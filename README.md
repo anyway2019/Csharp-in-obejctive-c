@@ -1,6 +1,6 @@
 # Csharp-in-obejctive-c
 
-someCsharp api implemention in obejctive-c
+some Csharp api implemention in obejctive-c
 
 ### Guid
 
