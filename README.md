@@ -1,6 +1,6 @@
-# Csharp-in-obejctive-c
+# Csharp-in-Obejctive-C
 
-some Csharp api implemention in obejctive-c
+some csharp api implemention in objective-c.
 
 ### Guid
 
@@ -62,7 +62,173 @@ some Csharp api implemention in obejctive-c
   ```
 
 ### string
+- #### string format
+  ```c#
+    var uuid = "2AD1";
+    var str = $"0000{ uuid }-0000-1000-8000-00805F9B34FB";
+  ```
 
-### flags
+  ```objective-c
+    NSString *str = [NSString stringWithFormat:@"0000%@-0000-1000-8000-00805F9B34FB",@"2AD1"];
+  ```
+
+### Enum
+- #### Flags
+  ```c#
+  [Flags]
+  public enum RowerDataFlag
+  {
+      MoreData = 1,
+      AverageStrokeRate = 2,
+      TotalDistance = 4,
+      InstantaneousPace = 8,
+      AveragePace = 16,
+      InstantPower = 32,
+      AveragePower = 64,
+      ResistanceLevel = 128,
+      ExpendedEnergy = 256,
+      HeartRate = 512,
+      MetabolicEquivalent = 1024,
+      ElapsedTime = 2048,
+      RemainingTime = 4096,
+      SingleEnergy = 8192,
+      Pull = 16384,
+      ThinkDragFactor = 32768
+  }
+
+  RowerDataFlag flags = 465;
+  if(flags.HasFlag(RowerDataFlag.MoreData)){
+    Console.WriteLine("MoreData");
+  }
+
+  if(flags.HasFlag(RowerDataFlag.TotalDistance)){
+    Console.WriteLine("TotalDistance");
+  }
+
+  if(flags.HasFlag(RowerDataFlag.AveragePower)){
+    Console.WriteLine("AveragePower");
+  }
+  ```
+  ```objective-c
+
+  @interface RowerDataFlag : NSObject
+
+  @property (class, nonatomic, assign, readonly) int moreData;
+  @property (class, nonatomic, assign, readonly) int averageStrokeRate;
+  @property (class, nonatomic, assign, readonly) int totalDistance;
+  @property (class, nonatomic, assign, readonly) int instantaneousPace;
+  @property (class, nonatomic, assign, readonly) int averagePace;
+  @property (class, nonatomic, assign, readonly) int instantPower;
+  @property (class, nonatomic, assign, readonly) int averagePower;
+  @property (class, nonatomic, assign, readonly) int resistanceLevel;
+  @property (class, nonatomic, assign, readonly) int expendedEnergy;
+  @property (class, nonatomic, assign, readonly) int heartRate;
+  @property (class, nonatomic, assign, readonly) int metabolicEquivalent;
+  @property (class, nonatomic, assign, readonly) int elapsedTime;
+  @property (class, nonatomic, assign, readonly) int remainingTime;
+  @property (class, nonatomic, assign, readonly) int singleEnergy;
+  @property (class, nonatomic, assign, readonly) int pull;
+  @property (class, nonatomic, assign, readonly) int thinkDragFactor;
+
+  + (BOOL)hasFlag:(int)flags flag:(int)flag;
+
+  @end
+
+  @implementation RowerDataFlag
+
+  + (BOOL)hasFlag:(int)flags flag:(int)flag {
+      return (flags & flag) == flag;
+  }
+
+  + (int)moreData {
+      return 1;
+  }
+
+  + (int)averageStrokeRate {
+      return 2;
+  }
+
+  + (int)totalDistance {
+      return 4;
+  }
+
+  + (int)instantaneousPace {
+      return 8;
+  }
+
+  + (int)averagePace {
+      return 16;
+  }
+
+  + (int)instantPower {
+      return 32;
+  }
+
+  + (int)averagePower {
+      return 64;
+  }
+
+  + (int)resistanceLevel {
+      return 128;
+  }
+
+  + (int)expendedEnergy {
+      return 256;
+  }
+
+  + (int)heartRate {
+      return 512;
+  }
+
+  + (int)metabolicEquivalent {
+      return 1024;
+  }
+
+  + (int)elapsedTime {
+      return 2048;
+  }
+
+  + (int)remainingTime {
+      return 4096;
+  }
+
+  + (int)singleEnergy {
+      return 8192;
+  }
+
+  + (int)pull {
+      return 16384;
+  }
+
+  + (int)thinkDragFactor {
+      return 32768;
+  }
+
+  @end
+
+  int flags = 465;
+
+  if([RowerDataFlag hasFlag:flags flag:[RowerDataFlag moreData]]){
+    NSLog(@"moreData flags : %u",flags);
+  }
+
+  if([RowerDataFlag hasFlag:flags flag:[RowerDataFlag totalDistance]]){
+    NSLog(@"totalDistance flags : %u",flags);
+  }
+
+  if([RowerDataFlag hasFlag:flags flag:[RowerDataFlag averagePower]]){
+    NSLog(@"averagePower flags : %u",flags);
+  }
+
+  ```
 
 ### DateTime
+- #### DateTime format string 
+  ```c#
+  var str = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+  ```
+  ```objective-c
+  NSDate *currentDate = [NSDate date];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+  ```
